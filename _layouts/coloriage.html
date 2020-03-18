@@ -23,7 +23,7 @@
   <h2>Consignes</h2>
   {{ content }}
 
-  <ul>
+  <ul class="consignes">
   {% for solution in page.solutions %}
     {% assign color = solution[1] %}
     <li>{{ solution[0]}} : <span style="color: {{ page.colors_css[color] }}">{{ page.colors[color] }}</span></li>
@@ -31,7 +31,7 @@
   </ul>
 
   <h2>Exercices</h2>
-  <ol>
+  <ol class="exercices">
   {% for exercice in page.exercices %}
     <li>{{ exercice[0] }}</li>
   {% endfor %}

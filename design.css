@@ -40,6 +40,7 @@ h1 {
 
   table-layout:fixed;
   border-collapse: collapse;
+  color: rgb(117,117,117);
 }
 
 td {
@@ -48,3 +49,11 @@ td {
   height: 50px;
 }
 
+.consignes {
+  column-count: 2;
+}
+
+.exercices li {
+  margin: 10px 0;
+  border-bottom: dotted 1px rgb(117,117,117);
+}
