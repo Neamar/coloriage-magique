@@ -1,0 +1,79 @@
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ page.title}}</title>
+  <link rel="stylesheet" href="/css/design.css">
+</head>
+<body>
+
+<h1>Coloriage magique</h1>
+<table id="coloriage" style="display: none">
+{% for line in page.grid %}
+  <tr>
+  {% assign cell = line | split: "" %}
+  {% for  c in cell %}
+  <td>{{ c }}</td>
+  {% endfor %}
+{% endfor %}
+</table>
+
+<h2>Consignes</h2>
+{{ content }}
+
+<ul>
+{% for solution in page.solutions %}
+  {% assign color = solution[1] %}
+  <li>{{ solution[0]}} : <span style="color: {{ page.colors_css[color] }}">{{ page.colors[color] }}</span></li>
+{% endfor %}
+</ul>
+
+<h2>Exercices</h2>
+<ol>
+{% for exercice in page.exercices %}
+  <li>{{ exercice[0] }}</li>
+{% endfor %}
+</ol>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var coloriage = document.getElementById('coloriage');
+  var cells = document.getElementsByTagName('td');
+  var colorsCount = parseInt("{{ page.colors | size }}");
+  var exercices = JSON.parse(decodeURIComponent("{{ page.exercices | jsonify | uri_escape }}"));
+  var solutionMapping = JSON.parse(decodeURIComponent("{{ page.solutions | jsonify | uri_escape }}"));
+
+  var pool = [];
+  for(var i = 0; i < cells.length; i++) {
+    Object.keys(exercices).forEach(function(exercice, index) {
+      pool.push({
+        exercice: exercice,
+        solution: exercices[exercice],
+        mapping: solutionMapping[exercices[exercice]],
+        index: index,
+        used: false
+      });
+    })
+  }
+
+  for(var i = 0; i < cells.length; i++) {
+    var cell = cells[i];
+    var searchedContent = cell.textContent;
+    // find the first matching exercice
+    for(var j = 0; j < pool.length; j++) {
+      var potential = pool[j];
+      var color = solutionMapping[potential.solution];
+      if(potential.used || color != searchedContent) {
+        continue;
+      }
+      potential.used = true;
+      cell.textContent = potential.index
+      break;
+    }
+  }
+
+  coloriage.style.display = "table";
+});
+</script>
+</body>
+</html>
