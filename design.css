@@ -53,7 +53,10 @@ td {
   column-count: 2;
 }
 
-.exercices li {
-  margin: 10px 0;
-  border-bottom: dotted 1px rgb(117,117,117);
+.exercices li p {
+  display: inline
+}
+
+.exercices li img {
+  vertical-align: center;
 }

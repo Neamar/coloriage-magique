@@ -31,9 +31,9 @@
   </ul>
 
   <h2>Exercices</h2>
-  <ol class="exercices">
+  <ol class="exercices" style="{{ page.exercices_style }}">
   {% for exercice in page.exercices %}
-    <li>{{ exercice[0] }}</li>
+    <li style="{{ page.exercices_li_style }}">{{ exercice[0] | markdownify }}</li>
   {% endfor %}
   </ol>
 </div>
