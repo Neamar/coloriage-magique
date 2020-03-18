@@ -2,38 +2,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ page.title}}</title>
+  <title>{{ page.title }}</title>
   <link rel="stylesheet" href="design.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>Coloriage magique</h1>
-<table id="coloriage" style="display: none">
-{% for line in page.grid %}
-  <tr>
-  {% assign cell = line | split: "" %}
-  {% for  c in cell %}
-  <td>{{ c }}</td>
+<div class="container">
+  <h1>Coloriage magique</h1>
+  <table id="coloriage" style="display: none">
+  {% for line in page.grid %}
+    <tr>
+    {% assign cell = line | split: "" %}
+    {% for  c in cell %}
+    <td>{{ c }}</td>
+    {% endfor %}
   {% endfor %}
-{% endfor %}
-</table>
+  </table>
 
-<h2>Consignes</h2>
-{{ content }}
+  <h2>Consigne</h2>
+  {{ content }}
 
-<ul>
-{% for solution in page.solutions %}
-  {% assign color = solution[1] %}
-  <li>{{ solution[0]}} : <span style="color: {{ page.colors_css[color] }}">{{ page.colors[color] }}</span></li>
-{% endfor %}
-</ul>
+  <ul class="consignes">
+  {% for solution in page.solutions %}
+    {% assign color = solution[1] %}
+    <li>{{ solution[0]}} : <span style="color: {{ page.colors_css[color] }}">{{ page.colors[color] }}</span></li>
+  {% endfor %}
+  </ul>
 
-<h2>Exercices</h2>
-<ol>
-{% for exercice in page.exercices %}
-  <li>{{ exercice[0] }}</li>
-{% endfor %}
-</ol>
+  <h2>Exercices</h2>
+  <ol class="exercices">
+  {% for exercice in page.exercices %}
+    <li>{{ exercice[0] }}</li>
+  {% endfor %}
+  </ol>
+</div>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

@@ -2,3 +2,58 @@ td {
   width: 2em;
   height: 2em;
 }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media print {
+  @page {
+    size: 330mm 427mm;
+    margin: 14mm;
+  }
+  .container {
+    width: 1170px;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 15px;
+  text-decoration: underline;
+}
+
+#coloriage {
+  margin: auto;
+  text-align: center;
+  flex: 1;
+
+  table-layout:fixed;
+  border-collapse: collapse;
+  color: rgb(117,117,117);
+}
+
+td {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+}
+
+.consignes {
+  column-count: 2;
+}
+
+.exercices li {
+  margin: 10px 0;
+  border-bottom: dotted 1px rgb(117,117,117);
+}
